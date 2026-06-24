@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القارئ عبد الرحمن ذكي حاج حسين | الملف الشخصي</title>
+    <!-- استدعاء أيقونات Font Awesome الشاملة للمنصات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
+            --card-bg: rgba(255, 255, 255, 0.06);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-sub: #cbd5e1;
+            --accent-color: #a855f7;
+            --btn-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode {
+            --bg-gradient: linear-gradient(135deg, #f1f5f9, #e2e8f0, #fae8ff);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(15, 23, 42, 0.08);
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --accent-color: #7c3aed;
+            --btn-bg: rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .control-btn {
+            background: var(--btn-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* رأس الصفحة والمعلومات الشخصية */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 15px auto;
+        }
+
+        /* الحفاظ على الملامح الأصلية للصورة المرفوعة */
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            object-fit: cover; 
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        /* قسم السيرة الذاتية */
+        .bio-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: justify;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-sub);
+        }
+
+        .light-mode .bio-section {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        /* قائمة الروابط المنظمة */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .links-wrapper::-webkit-scrollbar {
+            width: 5px;
+        }
+        .links-wrapper::-webkit-scrollbar-thumb {
+            background: var(--card-border);
+            border-radius: 10px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: var(--btn-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-card i {
+            font-size: 1.3rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        html[dir="rtl"] .link-card i:first-child { margin-left: 15px; }
+        html[dir="ltr"] .link-card i:first-child { margin-right: 15px; }
+        
+        html[dir="rtl"] .link-card .arrow { margin-right: auto; transform: rotate(0deg); }
+        html[dir="ltr"] .link-card .arrow { margin-left: auto; transform: rotate(180deg); }
+
+        .link-card span {
+            flex-grow: 1;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            background: var(--card-bg);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ألوان أيقونات المنصات الرسمية للتلاوات والتواصل */
+        .youtube i { color: #ff0000; }
+        .tiktok i { color: #01f1e8; }
+        .twitter i { color: var(--text-main); }
+        .threads i { color: var(--text-main); }
+        .facebook i { color: #1877f2; }
+        .instagram i { color: #e1306c; }
+        .telegram i { color: #26a5e4; }
+        .spotify i { color: #1ed760; }
+        .anghami i { color: #9b51e0; }
+        .amazon i { color: #149caa; }
+        .deezer i { color: #ff4f00; }
+
+        html[dir="ltr"] .bio-section,
+        html[dir="ltr"] .link-card span {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- أزرار التحكم بالوضع والمظهر -->
+        <div class="controls">
+            <button class="control-btn" id="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i> <span id="theme-text">الوضع الداكن</span>
+            </button>
+            <button class="control-btn" id="lang-toggle" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i> <span>English</span>
+            </button>
+        </div>
+
+        <!-- معلومات الواجهة والصورة المحلية المربوطة بجيت هوب -->
+        <div class="profile-header">
+            <div class="avatar-wrapper">
+                <img class="profile-img" src="1000081318.jpg" alt="عبد الرحمن ذكي حاج حسين">
+            </div>
+            <h1 id="profile-name">عبد الرحمن ذكي حاج حسين</h1>
+            <p class="subtitle" id="profile-title">حافظ للقرآن الكريم ومستضيف للتلاوات القرآنية العطرة</p>
+        </div>
+
+        <!-- قسم النبذة التعريفية -->
+        <div class="bio-section">
+            <h2 class="section-title"><i class="fas fa-bookmark"></i> <span id="bio-title">نبذة تعريفية</span></h2>
+            <p id="bio-text">
+                أهلاً بك في منصتي الرقمية الرسمية. أنا عبد الرحمن ذكي حاج حسين، حافظ لكتاب الله عز وجل، أسعى من خلال هذه الحسابات إلى مشاركة تلاوات قرآنية خاشعة ومحتوى هادف يلامس القلوب ويهدف لنشر الطمأنينة والتدبر في آيات القرآن الكريم عبر مختلف المنصات العالمية المسموعة والمرئية.
+            </p>
+        </div>
+
+        <!-- قائمة الروابط الـ 11 المدققة والسليمة تماماً -->
+        <div class="bio-section" style="margin-bottom: 0;">
+            <h2 class="section-title"><i class="fas fa-share-nodes"></i> <span id="links-title">المنصات الرقمية الرسمية</span></h2>
+            
+            <div class="links-wrapper">
+                
+                <a href="https://www.youtube.com/@abdulrahman_haj_hussein" target="_blank" class="link-card youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span class="platform-name" data-ar="يوتيوب (YouTube)" data-en="YouTube">يوتيوب (YouTube)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@abdulrahman_haj_hussein" target="_blank" class="link-card tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <span class="platform-name" data-ar="تيك توك (TikTok)" data-en="TikTok">تيك توك (TikTok)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://x.com/abdulrahman_hj_" target="_blank" class="link-card twitter">
+                    <i class="fab fa-x-twitter"></i>
+                    <span class="platform-name" data-ar="منصة X (تويتر سابقاً)" data-en="X (Formerly Twitter)">منصة X (تويتر سابقاً)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://www.threads.net/@abdulrahman_haj_hussein" target="_blank" class="link-card threads">
+                    <i class="fab fa-threads"></i>
+                    <span class="platform-name" data-ar="ثريدز (Threads)" data-en="Threads">ثريدز (Threads)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://www.facebook.com/abdulrahmanhajhussein0" target="_blank" class="link-card facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="platform-name" data-ar="فيسبوك (Facebook)" data-en="Facebook">فيسبوك (Facebook)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://www.instagram.com/abdulrahman_haj_hussein" target="_blank" class="link-card instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span class="platform-name" data-ar="إنستغرام (Instagram)" data-en="Instagram">إنستغرام (Instagram)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://t.me/abdulrahmanhajhussein" target="_blank" class="link-card telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span class="platform-name" data-ar="تليجرام (Telegram)" data-en="Telegram">تليجرام (Telegram)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://open.spotify.com/artist/385109221" target="_blank" class="link-card spotify">
+                    <i class="fab fa-spotify"></i>
+                    <span class="platform-name" data-ar="سبوتيفاي (Spotify)" data-en="Spotify">سبوتيفاي (Spotify)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://play.anghami.com/artist/28097094" target="_blank" class="link-card anghami">
+                    <i class="fas fa-music"></i>
+                    <span class="platform-name" data-ar="أنغامي (Anghami)" data-en="Anghami">أنغامي (Anghami)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://music.amazon.com/artists/B0GX2FMQKL" target="_blank" class="link-card amazon">
+                    <i class="fab fa-amazon"></i>
+                    <span class="platform-name" data-ar="أمازون ميوزك (Amazon Music)" data-en="Amazon Music">أمازون ميوزك (Amazon Music)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+                <a href="https://link.deezer.com/s/33DOcI4SUzPoOIgKiUOES" target="_blank" class="link-card deezer">
+                    <i class="fab fa-deezer"></i>
+                    <span class="platform-name" data-ar="ديزر (Deezer)" data-en="Deezer">ديزر (Deezer)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // مصفوفة الترجمة المتكاملة لتغيير المحتوى بالكامل فوراً
+        const translations = {
+            ar: {
+                name: "عبد الرحمن ذكي حاج حسين",
+                title: "حافظ للقرآن الكريم ومستضيف للتلاوات القرآنية العطرة",
+                bioTitle: "نبذة تعريفية",
+                bioText: "أهلاً بك في منصتي الرقمية الرسمية. أنا عبد الرحمن ذكي حاج حسين، حافظ لكتاب الله عز وجل، أسعى من خلال هذه الحسابات إلى مشاركة تلاوات قرآنية خاشعة ومحتوى هادف يلامس القلوب ويهدف لنشر الطمأنينة والتدبر في آيات القرآن الكريم عبر مختلف المنصات العالمية المسموعة والمرئية.",
+                linksTitle: "المنصات الرقمية الرسمية",
+                darkTheme: "الوضع الداكن",
+                lightTheme: "الوضع المضيء"
+            },
+            en: {
+                name: "Abdulrahman Zaki Haj Hussein",
+                title: "Quran Reciter | Sharer of Humble & Spiritual Recitations",
+                bioTitle: "About Me",
+                bioText: "Welcome to my official digital platform. I am Abdulrahman Zaki Haj Hussein, a Quran reciter dedicated to sharing humble and peaceful recitations. My goal is to spread tranquility and reflection upon the Holy Quran across various global audio and visual platforms.",
+                linksTitle: "Official Digital Platforms",
+                darkTheme: "Dark Mode",
+                lightTheme: "Light Mode"
+            }
+        };
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeText = document.getElementById('theme-text');
+            const themeIcon = document.querySelector('#theme-toggle i');
+            const currentLang = document.documentElement.getAttribute('dir') === 'rtl' ? 'ar' : 'en';
+
+            body.classList.toggle('light-mode');
+
+            if(body.classList.contains('light-mode')) {
+                themeIcon.className = "fas fa-sun";
+                themeText.innerText = translations[currentLang].lightTheme;
+            } else {
+                themeIcon.className = "fas fa-moon";
+                themeText.innerText = translations[currentLang].darkTheme;
+            }
+        }
+
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const langBtnSpan = document.querySelector('#lang-toggle span');
+            const isRTL = html.getAttribute('dir') === 'rtl';
+
+            if(isRTL) {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                langBtnSpan.innerText = "العربية";
+                updateDOMText('en');
+            } else {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                langBtnSpan.innerText = "English";
+                updateDOMText('ar');
+            }
+        }
+
+        function updateDOMText(lang) {
+            document.getElementById('profile-name').innerText = translations[lang].name;
+            document.getElementById('profile-title').innerText = translations[lang].title;
+            document.getElementById('bio-title').innerText = translations[lang].bioTitle;
+            document.getElementById('bio-text').innerText = translations[lang].bioText;
+            document.getElementById('links-title').innerText = translations[lang].linksTitle;
+            
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('theme-text').innerText = isLight ? translations[lang].lightTheme : translations[lang].darkTheme;
+
+            const platforms = document.querySelectorAll('.platform-name');
+            platforms.forEach(p => {
+                p.innerText = p.getAttribute(`data-${lang}`);
+            });
+        }
+    </script>
+</body>
+</html>
