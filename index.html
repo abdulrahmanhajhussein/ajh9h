@@ -211,7 +211,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* ألوان الأيقونات المنظمة للتواصل وتلاوات الشيخ عبد الرحمن */
+        /* ألوان الأيقونات */
         .youtube i { color: #ff0000; }
         .tiktok i { color: #01f1e8; }
         .twitter i { color: var(--text-main); }
@@ -229,12 +229,10 @@
             text-align: left;
         }
 
-        /* الأزرار العائمة المضافة */
         .fabs-container { position: fixed; bottom: 30px; z-index: 1000; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         html[dir="rtl"] .fabs-container { left: 20px; }
         html[dir="ltr"] .fabs-container { right: 20px; }
         
-        /* عنصر الجرس التشجيعي للاشتراك */
         .fab-badge {
             background-color: rgba(255, 0, 0, 0.9);
             color: white;
@@ -247,10 +245,9 @@
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
             cursor: default;
-            pointer-events: none; /* يجعله غير قابل للنقر */
+            pointer-events: none;
         }
         
-        /* حركة اهتزاز الجرس */
         @keyframes ringbell {
             0%, 100% { transform: rotate(0deg); }
             10% { transform: rotate(15deg); }
@@ -261,7 +258,6 @@
         }
         .fab-badge i { animation: ringbell 2.5s infinite ease-in-out; font-size: 1.1rem; }
         
-        /* زر المشاركة الفعلي */
         .fab-btn { width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s ease; color: white; text-decoration: none; font-size: 1.2rem; }
         .fab-btn:hover { transform: scale(1.1); }
         .fab-share { background-color: var(--accent-color); }
@@ -270,7 +266,6 @@
 <body>
 
     <div class="container">
-        <!-- أزرار التحكم بالمظهر واللغات -->
         <div class="controls">
             <button class="control-btn" id="theme-toggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i> <span id="theme-text">الوضع الداكن</span>
@@ -280,7 +275,6 @@
             </button>
         </div>
 
-        <!-- رأس الصفحة الذي تم ربطه باسم الصورة الجديدة المرفوعة لديك -->
         <div class="profile-header">
             <div class="avatar-wrapper">
                 <img class="profile-img" src="portrait_optimized_under_1mb.jpg" alt="عبد الرحمن ذكي حاج حسين">
@@ -289,7 +283,6 @@
             <p class="subtitle" id="profile-title">حافظ للقرآن الكريم ومستضيف للتلاوات القرآنية العطرة</p>
         </div>
 
-        <!-- قسم النبذة التعريفية -->
         <div class="bio-section">
             <h2 class="section-title"><i class="fas fa-bookmark"></i> <span id="bio-title">نبذة تعريفية</span></h2>
             <p id="bio-text">
@@ -297,56 +290,59 @@
             </p>
         </div>
 
-        <!-- قائمة الروابط الكاملة الخالية من الأخطاء -->
         <div class="bio-section" style="margin-bottom: 0;">
             <h2 class="section-title"><i class="fas fa-share-nodes"></i> <span id="links-title">المنصات الرقمية الرسمية</span></h2>
             
             <div class="links-wrapper">
                 
-                <a href="https://www.youtube.com/@abdulrahman_haj_hussein" target="_blank" class="link-card youtube">
+                <a href="https://youtube.com/@ajh9h?si=OBJpKH5MjDGacYLO" target="_blank" class="link-card youtube">
                     <i class="fab fa-youtube"></i>
                     <span class="platform-name" data-ar="يوتيوب (YouTube)" data-en="YouTube">يوتيوب (YouTube)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <!-- تم التعديل والتأكد من رابط TikTok الجديد بنجاح -->
-                <a href="https://www.tiktok.com/@abdulrahman_haj_hussein?_r=1&_t=ZS-97TRLLbFFn3" target="_blank" class="link-card tiktok">
+                <a href="https://www.tiktok.com/@ajh9h?_r=1&_t=ZS-97uoBOUo7nA" target="_blank" class="link-card tiktok">
                     <i class="fab fa-tiktok"></i>
                     <span class="platform-name" data-ar="تيك توك (TikTok)" data-en="TikTok">تيك توك (TikTok)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <a href="https://x.com/abdulrahman_hj_" target="_blank" class="link-card twitter">
+                <a href="https://x.com/ajh9h" target="_blank" class="link-card twitter">
                     <i class="fab fa-x-twitter"></i>
                     <span class="platform-name" data-ar="منصة X (تويتر سابقاً)" data-en="X (Formerly Twitter)">منصة X (تويتر سابقاً)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <a href="https://www.threads.net/@abdulrahman_haj_hussein" target="_blank" class="link-card threads">
+                <a href="https://www.threads.com/@ajh9h" target="_blank" class="link-card threads">
                     <i class="fab fa-threads"></i>
                     <span class="platform-name" data-ar="ثريدز (Threads)" data-en="Threads">ثريدز (Threads)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <a href="https://www.facebook.com/abdulrahmanhajhussein0" target="_blank" class="link-card facebook">
+                <a href="https://www.facebook.com/share/18yVsLnfA7/" target="_blank" class="link-card facebook">
                     <i class="fab fa-facebook-f"></i>
-                    <span class="platform-name" data-ar="فيسبوك (Facebook)" data-en="Facebook">فيسبوك (Facebook)</span>
+                    <span class="platform-name" data-ar="صفحة فيسبوك (Facebook Page)" data-en="Facebook Page">صفحة فيسبوك (Facebook Page)</span>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </a>
+                
+                <a href="https://www.facebook.com/share/1D77CpwFNP/" target="_blank" class="link-card facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="platform-name" data-ar="ملف فيسبوك الشخصي (Profile)" data-en="Facebook Profile">ملف فيسبوك الشخصي (Profile)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <a href="https://www.instagram.com/abdulrahman_haj_hussein" target="_blank" class="link-card instagram">
+                <a href="https://www.instagram.com/ajh9h?igsh=MW5wMTc1eWJyOGt3aw==" target="_blank" class="link-card instagram">
                     <i class="fab fa-instagram"></i>
                     <span class="platform-name" data-ar="إنستغرام (Instagram)" data-en="Instagram">إنستغرام (Instagram)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <a href="https://t.me/abdulrahmanhajhussein" target="_blank" class="link-card telegram">
+                <a href="https://t.me/ajh9h" target="_blank" class="link-card telegram">
                     <i class="fab fa-telegram-plane"></i>
                     <span class="platform-name" data-ar="تليجرام (Telegram)" data-en="Telegram">تليجرام (Telegram)</span>
                     <i class="fas fa-chevron-left arrow"></i>
                 </a>
 
-                <!-- تم التعديل والتأكد من رابط Spotify الجديد بنجاح -->
                 <a href="https://open.spotify.com/artist/03AshMU2gnma1k0O6mV5E2?si=vhT3zvTBRieelPIIxtkgBA" target="_blank" class="link-card spotify">
                     <i class="fab fa-spotify"></i>
                     <span class="platform-name" data-ar="سبوتيفاي (Spotify)" data-en="Spotify">سبوتيفاي (Spotify)</span>
@@ -375,15 +371,11 @@
         </div>
     </div>
 
-    <!-- الأزرار العائمة المدمجة -->
     <div class="fabs-container">
-        <!-- عنصر تشجيعي بصري للاشتراك -->
         <div class="fab-badge">
             <i class="fas fa-bell"></i>
             <span id="badge-text">اشترك في القناة</span>
         </div>
-        
-        <!-- زر المشاركة الفعلي -->
         <button class="fab-btn fab-share" onclick="shareWebsite()" title="مشاركة الموقع">
             <i class="fas fa-share-alt"></i>
         </button>
@@ -404,7 +396,6 @@
             }
         }
 
-        // مصفوفات الترجمة واللغة الثنائية
         const translations = {
             ar: {
                 name: "عبد الرحمن ذكي حاج حسين",
