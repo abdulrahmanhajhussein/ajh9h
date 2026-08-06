@@ -35,8 +35,8 @@
     }
     </script>
 
-    <!-- استدعاء أيقونات Font Awesome الشاملة للمنصات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- استدعاء أحدث إصدار من مكتبة أيقونات Font Awesome الشاملة للمنصات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
@@ -46,6 +46,9 @@
             --text-sub: #cbd5e1;
             --accent-color: #a855f7;
             --btn-bg: rgba(255, 255, 255, 0.1);
+            --news-card-bg: rgba(15, 23, 42, 0.35);
+            --news-card-border: transparent;
+            --nav-item-color: #e2e8f0; /* لون واضح ومميز للأزرار غير النشطة */
         }
 
         .light-mode {
@@ -56,6 +59,9 @@
             --text-sub: #475569;
             --accent-color: #7c3aed;
             --btn-bg: rgba(15, 23, 42, 0.08);
+            --news-card-bg: rgba(255, 255, 255, 0.6);
+            --news-card-border: transparent;
+            --nav-item-color: #334155; /* لون واضح ومميز للأزرار غير النشطة في الوضع المضيء */
         }
 
         * {
@@ -75,6 +81,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            padding-bottom: 90px;
             color: var(--text-main);
         }
 
@@ -94,6 +101,13 @@
             border-radius: 24px;
             padding: 30px 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
         }
 
         .controls {
@@ -122,7 +136,6 @@
             border-color: transparent;
         }
 
-        /* رأس الصفحة والمعلومات الشخصية */
         .profile-header {
             text-align: center;
             margin-bottom: 30px;
@@ -155,7 +168,6 @@
             color: var(--text-sub);
         }
 
-        /* قسم السيرة الذاتية */
         .bio-section {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
@@ -172,6 +184,21 @@
             background: rgba(0, 0, 0, 0.02);
         }
 
+        .news-section-box {
+            background: var(--news-card-bg);
+            border: var(--news-card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 0;
+            text-align: justify;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            box-shadow: none;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
         .section-title {
             font-size: 1.1rem;
             margin-bottom: 15px;
@@ -183,7 +210,6 @@
             color: var(--text-main);
         }
 
-        /* قائمة الروابط المنظمة */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -216,14 +242,18 @@
             transition: all 0.3s ease;
         }
 
-        .link-card i {
+        .link-card i, .link-card svg {
             font-size: 1.3rem;
             width: 25px;
+            height: 25px;
             text-align: center;
+            flex-shrink: 0;
         }
 
-        html[dir="rtl"] .link-card i:first-child { margin-left: 15px; }
-        html[dir="ltr"] .link-card i:first-child { margin-right: 15px; }
+        html[dir="rtl"] .link-card i:first-child,
+        html[dir="rtl"] .link-card svg:first-child { margin-left: 15px; }
+        html[dir="ltr"] .link-card i:first-child,
+        html[dir="ltr"] .link-card svg:first-child { margin-right: 15px; }
         
         html[dir="rtl"] .link-card .arrow { margin-right: auto; transform: rotate(0deg); }
         html[dir="ltr"] .link-card .arrow { margin-left: auto; transform: rotate(180deg); }
@@ -239,7 +269,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* ألوان الأيقونات */
         .youtube i { color: #ff0000; }
         .tiktok i { color: #01f1e8; }
         .twitter i { color: var(--text-main); }
@@ -248,17 +277,100 @@
         .instagram i { color: #e1306c; }
         .telegram i { color: #26a5e4; }
         .spotify i { color: #1ed760; }
-        .anghami i { color: #9b51e0; }
+        .anghami i { color: #a855f7; }
         .amazon i { color: #149caa; }
-        .deezer i { color: #ff4f00; }
+        .deezer i { color: #a238ff; }
         .musicbrainz i { color: #eb8d00; }
 
         html[dir="ltr"] .bio-section,
+        html[dir="ltr"] .news-section-box,
         html[dir="ltr"] .link-card span {
             text-align: left;
         }
 
-        .fabs-container { position: fixed; bottom: 30px; z-index: 1000; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        /* شريط التنقل السفلي شفاف بالكامل بدون أي خطوط عرضية، وتم تلوين الأزرار لتكون واضحة */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: transparent !important;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-top: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1001;
+            box-shadow: none;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: var(--nav-item-color); /* لون ملون وواضح للأزرار غير النشطة لتبرز فوق الخلفية */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex: 1;
+            padding: 5px;
+            opacity: 0.9; /* زيادة الوضوح لتجنب الاندماج مع النص أو الخلفية */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف جداً لزيادة البروز والقراءة */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item i {
+            font-size: 1.25rem;
+        }
+
+        .nav-item.active {
+            color: var(--accent-color);
+            opacity: 1;
+            transform: translateY(-2px);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
+        }
+
+        .nav-item:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            background: transparent;
+        }
+
+        .news-body {
+            white-space: pre-line;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .news-body a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            font-weight: bold;
+            display: inline-block;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .fabs-container {
+            position: fixed;
+            bottom: 85px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: opacity 0.3s ease;
+        }
         html[dir="rtl"] .fabs-container { left: 20px; }
         html[dir="ltr"] .fabs-container { right: 20px; }
         
@@ -304,109 +416,151 @@
             </button>
         </div>
 
-        <div class="profile-header">
-            <div class="avatar-wrapper">
-                <img class="profile-img" src="portrait_optimized_under_1mb.jpg" alt="عبد الرحمن ذكي حاج حسين">
+        <!-- تبويب الصفحة الرئيسية -->
+        <div id="home-tab" class="tab-content active">
+            <div class="profile-header">
+                <div class="avatar-wrapper">
+                    <img class="profile-img" src="portrait_optimized_under_1mb.jpg" alt="عبد الرحمن ذكي حاج حسين">
+                </div>
+                <h1 id="profile-name">عبد الرحمن ذكي حاج حسين</h1>
+                <p class="subtitle" id="profile-title">حافظ للقرآن الكريم وقارئ قرآن ومستضيف للتلاوات القرآنية العطرة</p>
             </div>
-            <h1 id="profile-name">عبد الرحمن ذكي حاج حسين</h1>
-            <p class="subtitle" id="profile-title">حافظ للقرآن الكريم وقارئ قرآن ومستضيف للتلاوات القرآنية العطرة</p>
+
+            <div class="bio-section">
+                <h2 class="section-title"><i class="fas fa-bookmark"></i> <span id="bio-title">نبذة تعريفية</span></h2>
+                <p id="bio-text">
+                    أهلاً بك في منصتي الرقمية الرسمية أنا عبد الرحمن ذكي حاج حسين، حافظ لكتاب الله عز وجل، أسعى من خلال هذه الحسابات إلى مشاركة تلاوات قرآنية خاشعة ومحتوى هادف يلامس القلوب ويهدف لنشر الطمأنينة والتدبر في آيات القرآن الكريم عبر مختلف المنصات العالمية المسموعة والمرئية
+                </p>
+            </div>
+
+            <div class="bio-section" style="margin-bottom: 0;">
+                <h2 class="section-title"><i class="fas fa-share-nodes"></i> <span id="links-title">المنصات الرقمية الرسمية</span></h2>
+                
+                <div class="links-wrapper">
+                    
+                    <a href="https://youtube.com/@ajh9h?si=OBJpKH5MjDGacYLO" target="_blank" class="link-card youtube">
+                        <i class="fab fa-youtube"></i>
+                        <span class="platform-name" data-ar="يوتيوب (YouTube)" data-en="YouTube">يوتيوب (YouTube)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@ajh9h?_r=1&_t=ZS-97uoBOUo7nA" target="_blank" class="link-card tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span class="platform-name" data-ar="تيك توك (TikTok)" data-en="TikTok">تيك توك (TikTok)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://x.com/ajh9h" target="_blank" class="link-card twitter">
+                        <i class="fab fa-x-twitter"></i>
+                        <span class="platform-name" data-ar="منصة X (تويتر سابقاً)" data-en="X (Formerly Twitter)">منصة X (تويتر سابقاً)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://www.threads.com/@ajh9h" target="_blank" class="link-card threads">
+                        <i class="fab fa-threads"></i>
+                        <span class="platform-name" data-ar="ثريدز (Threads)" data-en="Threads">ثريدز (Threads)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/share/18yVsLnfA7/" target="_blank" class="link-card facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="platform-name" data-ar="صفحة فيسبوك (Facebook Page)" data-en="Facebook Page">صفحة فيسبوك (Facebook Page)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/share/1D77CpwFNP/" target="_blank" class="link-card facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="platform-name" data-ar="ملف فيسبوك الشخصي (Profile)" data-en="Facebook Profile">ملف فيسبوك الشخصي (Profile)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/ajh9h?igsh=MW5wMTc1eWJyOGt3aw==" target="_blank" class="link-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span class="platform-name" data-ar="إنستغرام (Instagram)" data-en="Instagram">إنستغرام (Instagram)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://t.me/ajh9h" target="_blank" class="link-card telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span class="platform-name" data-ar="تليجرام (Telegram)" data-en="Telegram">تليجرام (Telegram)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://open.spotify.com/artist/03AshMU2gnma1k0O6mV5E2?si=vhT3zvTBRieelPIIxtkgBA" target="_blank" class="link-card spotify">
+                        <i class="fab fa-spotify"></i>
+                        <span class="platform-name" data-ar="سبوتيفاي (Spotify)" data-en="Spotify">سبوتيفاي (Spotify)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://play.anghami.com/artist/28097094" target="_blank" class="link-card anghami">
+                        <i class="fa-brands fa-anghami"></i>
+                        <span class="platform-name" data-ar="أنغامي (Anghami)" data-en="Anghami">أنغامي (Anghami)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://music.amazon.com/artists/B0GX2FMQKL" target="_blank" class="link-card amazon">
+                        <i class="fab fa-amazon"></i>
+                        <span class="platform-name" data-ar="أمازون ميوزك (Amazon Music)" data-en="Amazon Music">أمازون ميوزك (Amazon Music)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://link.deezer.com/s/33DOcI4SUzPoOIgKiUOES" target="_blank" class="link-card deezer">
+                        <i class="fa-brands fa-deezer"></i>
+                        <span class="platform-name" data-ar="ديزر (Deezer)" data-en="Deezer">ديزر (Deezer)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                    <a href="https://musicbrainz.org/artist/f10c476f-f245-40c9-b36f-766a484d7f9a" target="_blank" class="link-card musicbrainz">
+                        <i class="fas fa-compact-disc"></i>
+                        <span class="platform-name" data-ar="ميوزك برينز (MusicBrainz)" data-en="MusicBrainz">ميوزك برينز (MusicBrainz)</span>
+                        <i class="fas fa-chevron-left arrow"></i>
+                    </a>
+
+                </div>
+            </div>
         </div>
 
-        <div class="bio-section">
-            <h2 class="section-title"><i class="fas fa-bookmark"></i> <span id="bio-title">نبذة تعريفية</span></h2>
-            <p id="bio-text">
-                أهلاً بك في منصتي الرقمية الرسمية أنا عبد الرحمن ذكي حاج حسين، حافظ لكتاب الله عز وجل، أسعى من خلال هذه الحسابات إلى مشاركة تلاوات قرآنية خاشعة ومحتوى هادف يلامس القلوب ويهدف لنشر الطمأنينة والتدبر في آيات القرآن الكريم عبر مختلف المنصات العالمية المسموعة والمرئية
-            </p>
-        </div>
+        <!-- تبويب آخر الأخبار -->
+        <div id="news-tab" class="tab-content">
+            <div class="news-section-box">
+                <h2 class="section-title"><i class="fas fa-newspaper"></i> <span id="news-section-title">آخر الأخبار</span></h2>
+                <div class="news-body" id="news-text-content">عبد الرحمن ذكي حاج حسين هو قارئ قرآن كريم سوري وحافظ لكتاب الله عز وجل، وُلد في تاريخ 30 يناير 2008 في الجمهورية العربية السورية، وتحديداً في محافظة إدلب بقرية كفر عروق.
 
-        <div class="bio-section" style="margin-bottom: 0;">
-            <h2 class="section-title"><i class="fas fa-share-nodes"></i> <span id="links-title">المنصات الرقمية الرسمية</span></h2>
-            
-            <div class="links-wrapper">
-                
-                <a href="https://youtube.com/@ajh9h?si=OBJpKH5MjDGacYLO" target="_blank" class="link-card youtube">
-                    <i class="fab fa-youtube"></i>
-                    <span class="platform-name" data-ar="يوتيوب (YouTube)" data-en="YouTube">يوتيوب (YouTube)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+البيانات الشخصية:
 
-                <a href="https://www.tiktok.com/@ajh9h?_r=1&_t=ZS-97uoBOUo7nA" target="_blank" class="link-card tiktok">
-                    <i class="fab fa-tiktok"></i>
-                    <span class="platform-name" data-ar="تيك توك (TikTok)" data-en="TikTok">تيك توك (TikTok)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+الاسم الكامل: عبد الرحمن ذكي حاج حسين.
 
-                <a href="https://x.com/ajh9h" target="_blank" class="link-card twitter">
-                    <i class="fab fa-x-twitter"></i>
-                    <span class="platform-name" data-ar="منصة X (تويتر سابقاً)" data-en="X (Formerly Twitter)">منصة X (تويتر سابقاً)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+تاريخ الميلاد: 30 / 1 / 2008 م.
 
-                <a href="https://www.threads.com/@ajh9h" target="_blank" class="link-card threads">
-                    <i class="fab fa-threads"></i>
-                    <span class="platform-name" data-ar="ثريدز (Threads)" data-en="Threads">ثريدز (Threads)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+الدولة: سوريا.
 
-                <a href="https://www.facebook.com/share/18yVsLnfA7/" target="_blank" class="link-card facebook">
-                    <i class="fab fa-facebook-f"></i>
-                    <span class="platform-name" data-ar="صفحة فيسبوك (Facebook Page)" data-en="Facebook Page">صفحة فيسبوك (Facebook Page)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-                
-                <a href="https://www.facebook.com/share/1D77CpwFNP/" target="_blank" class="link-card facebook">
-                    <i class="fab fa-facebook-f"></i>
-                    <span class="platform-name" data-ar="ملف فيسبوك الشخصي (Profile)" data-en="Facebook Profile">ملف فيسبوك الشخصي (Profile)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+المحافظة: إدلب.
 
-                <a href="https://www.instagram.com/ajh9h?igsh=MW5wMTc1eWJyOGt3aw==" target="_blank" class="link-card instagram">
-                    <i class="fab fa-instagram"></i>
-                    <span class="platform-name" data-ar="إنستغرام (Instagram)" data-en="Instagram">إنستغرام (Instagram)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+المنطقة / القرية: كفر عروق.
 
-                <a href="https://t.me/ajh9h" target="_blank" class="link-card telegram">
-                    <i class="fab fa-telegram-plane"></i>
-                    <span class="platform-name" data-ar="تليجرام (Telegram)" data-en="Telegram">تليجرام (Telegram)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
+المجال: تلاوة القرآن الكريم وحفظه.
+لمعرفة المزيد:
+<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
 
-                <a href="https://open.spotify.com/artist/03AshMU2gnma1k0O6mV5E2?si=vhT3zvTBRieelPIIxtkgBA" target="_blank" class="link-card spotify">
-                    <i class="fab fa-spotify"></i>
-                    <span class="platform-name" data-ar="سبوتيفاي (Spotify)" data-en="Spotify">سبوتيفاي (Spotify)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-
-                <a href="https://play.anghami.com/artist/28097094" target="_blank" class="link-card anhangami">
-                    <i class="fas fa-music"></i>
-                    <span class="platform-name" data-ar="أنغامي (Anghami)" data-en="Anghami">أنغامي (Anghami)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-
-                <a href="https://music.amazon.com/artists/B0GX2FMQKL" target="_blank" class="link-card amazon">
-                    <i class="fab fa-amazon"></i>
-                    <span class="platform-name" data-ar="أمازون ميوزك (Amazon Music)" data-en="Amazon Music">أمازون ميوزك (Amazon Music)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-
-                <a href="https://link.deezer.com/s/33DOcI4SUzPoOIgKiUOES" target="_blank" class="link-card deezer">
-                    <i class="fab fa-deezer"></i>
-                    <span class="platform-name" data-ar="ديزر (Deezer)" data-en="Deezer">ديزر (Deezer)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-
-                <a href="https://musicbrainz.org/artist/f10c476f-f245-40c9-b36f-766a484d7f9a" target="_blank" class="link-card musicbrainz">
-                    <i class="fas fa-compact-disc"></i>
-                    <span class="platform-name" data-ar="ميوزك برينز (MusicBrainz)" data-en="MusicBrainz">ميوزك برينز (MusicBrainz)</span>
-                    <i class="fas fa-chevron-left arrow"></i>
-                </a>
-
+الموقع الإلكتروني الرسمي والمنصات: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a></div>
             </div>
         </div>
     </div>
 
-    <div class="fabs-container">
+    <!-- شريط التنقل السفلي -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('home')" id="nav-home-btn">
+            <i class="fas fa-home"></i>
+            <span id="nav-home-text">الرئيسية</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('news')" id="nav-news-btn">
+            <i class="fas fa-newspaper"></i>
+            <span id="nav-news-text">آخر الأخبار</span>
+        </button>
+    </nav>
+
+    <!-- الأزرار العائمة (تظهر في الرئيسية فقط) -->
+    <div class="fabs-container" id="fabs-container">
         <div class="fab-badge">
             <i class="fas fa-bell"></i>
             <span id="badge-text">اشترك في القناة</span>
@@ -431,6 +585,29 @@
             }
         }
 
+        function switchTab(tabName) {
+            const homeTab = document.getElementById('home-tab');
+            const newsTab = document.getElementById('news-tab');
+            const homeBtn = document.getElementById('nav-home-btn');
+            const newsBtn = document.getElementById('nav-news-btn');
+            const fabsContainer = document.getElementById('fabs-container');
+
+            if (tabName === 'home') {
+                homeTab.classList.add('active');
+                newsTab.classList.remove('active');
+                homeBtn.classList.add('active');
+                newsBtn.classList.remove('active');
+                fabsContainer.style.display = 'flex';
+            } else {
+                newsTab.classList.add('active');
+                homeTab.classList.remove('active');
+                newsBtn.classList.add('active');
+                homeBtn.classList.remove('active');
+                fabsContainer.style.display = 'none';
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         const translations = {
             ar: {
                 name: "عبد الرحمن ذكي حاج حسين",
@@ -440,7 +617,29 @@
                 linksTitle: "المنصات الرقمية الرسمية",
                 darkTheme: "الوضع الداكن",
                 lightTheme: "الوضع المضيء",
-                subscribeBadge: "اشترك في القناة"
+                subscribeBadge: "اشترك في القناة",
+                navHome: "الرئيسية",
+                navNews: "آخر الأخبار",
+                newsTitle: "آخر الأخبار",
+                newsContent: `عبد الرحمن ذكي حاج حسين هو قارئ قرآن كريم سوري وحافظ لكتاب الله عز وجل، وُلد في تاريخ 30 يناير 2008 في الجمهورية العربية السورية، وتحديداً في محافظة إدلب بقرية كفر عروق.
+
+البيانات الشخصية:
+
+الاسم الكامل: عبد الرحمن ذكي حاج حسين.
+
+تاريخ الميلاد: 30 / 1 / 2008 م.
+
+الدولة: سوريا.
+
+المحافظة: إدلب.
+
+المنطقة / القرية: كفر عروق.
+
+المجال: تلاوة القرآن الكريم وحفظه.
+لمعرفة المزيد:
+<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
+
+الموقع الإلكتروني الرسمي والمنصات: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a>`
             },
             en: {
                 name: "Abdulrahman Zaki Haj Hussein",
@@ -450,7 +649,29 @@
                 linksTitle: "Official Digital Platforms",
                 darkTheme: "Dark Mode",
                 lightTheme: "Light Mode",
-                subscribeBadge: "Subscribe"
+                subscribeBadge: "Subscribe",
+                navHome: "Home",
+                navNews: "Latest News",
+                newsTitle: "Latest News",
+                newsContent: `Abdulrahman Zaki Haj Hussein is a Syrian Quran reciter and memorizer of the Book of Allah, born on January 30, 2008, in the Syrian Arab Republic, specifically in the Idlib Governorate, in the village of Kafr Uruq.
+
+Personal Data:
+
+Full Name: Abdulrahman Zaki Haj Hussein.
+
+Date of Birth: 30 / 1 / 2008 AD.
+
+Country: Syria.
+
+Governorate: Idlib.
+
+Region / Village: Kafr Uruq.
+
+Field: Recitation and memorization of the Holy Quran.
+To learn more:
+<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
+
+Official Website and Platforms: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a>`
             }
         };
 
@@ -496,6 +717,10 @@
             document.getElementById('bio-text').innerText = translations[lang].bioText;
             document.getElementById('links-title').innerText = translations[lang].linksTitle;
             document.getElementById('badge-text').innerText = translations[lang].subscribeBadge;
+            document.getElementById('nav-home-text').innerText = translations[lang].navHome;
+            document.getElementById('nav-news-text').innerText = translations[lang].navNews;
+            document.getElementById('news-section-title').innerText = translations[lang].newsTitle;
+            document.getElementById('news-text-content').innerHTML = translations[lang].newsContent;
             
             const isLight = document.body.classList.contains('light-mode');
             document.getElementById('theme-text').innerText = isLight ? translations[lang].lightTheme : translations[lang].darkTheme;
