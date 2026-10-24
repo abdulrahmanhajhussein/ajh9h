@@ -11,7 +11,9 @@
       gtag('config', 'G-P5BDSJECSQ');
     </script>
     <meta name="google-site-verification" content="DTComDv9YgUSx07ZsIH4oP2njbxplUYHi1oD0WzN7Hg" />
-    <link rel="icon" type="image/png" href="1782415159913.png">
+    <link rel="icon" type="image/png" href="./1782415159913.png?v=2">
+    <link rel="shortcut icon" type="image/png" href="./1782415159913.png?v=2">
+    <link rel="apple-touch-icon" href="./1782415159913.png?v=2">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>القارئ عبد الرحمن ذكي حاج حسين</title>
@@ -45,7 +47,7 @@
     </script>
 
     <!-- استدعاء أيقونات Font Awesome الشاملة للمنصات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
@@ -497,7 +499,7 @@
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
 
-                    <a href="https://play.anghami.com/artist/28097094" target="_blank" class="link-card anhangami">
+                    <a href="https://play.anghami.com/artist/28097094" target="_blank" class="link-card anghami">
                         <i class="fas fa-music"></i>
                         <span class="platform-name" data-ar="أنغامي (Anghami)" data-en="Anghami">أنغامي (Anghami)</span>
                         <i class="fas fa-chevron-left arrow"></i>
@@ -544,8 +546,6 @@
 المنطقة / القرية: كفر عروق.
 
 المجال: تلاوة القرآن الكريم وحفظه.
-لمعرفة المزيد:
-<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
 
 الموقع الرسمي والمنصات: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a></div>
             </div>
@@ -590,6 +590,9 @@
             }
         }
 
+        /**
+         * @param {string} tabName
+         */
         function switchTab(tabName) {
             const homeTab = document.getElementById('home-tab');
             const newsTab = document.getElementById('news-tab');
@@ -641,8 +644,6 @@
 المنطقة / القرية: كفر عروق.
 
 المجال: تلاوة القرآن الكريم وحفظه.
-لمعرفة المزيد:
-<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
 
 الموقع الرسمي والمنصات: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a>`
             },
@@ -673,8 +674,6 @@ Governorate: Idlib.
 Region / Village: Kafr Uruq.
 
 Field: Recitation and memorization of the Holy Quran.
-To learn more:
-<a href="https://medium.com/p/b13585b8eb68" target="_blank">https://medium.com/p/b13585b8eb68</a>
 
 Official Website and Platforms: <a href="https://abdulrahmanhajhussein.github.io/ajh9h/" target="_blank">https://abdulrahmanhajhussein.github.io/ajh9h/</a>`
             }
@@ -715,6 +714,9 @@ Official Website and Platforms: <a href="https://abdulrahmanhajhussein.github.io
             }
         }
 
+        /**
+         * @param {string} lang
+         */
         function updateDOMText(lang) {
             document.getElementById('profile-name').innerText = translations[lang].name;
             document.getElementById('profile-title').innerText = translations[lang].title;
